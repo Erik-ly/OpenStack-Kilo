@@ -42,6 +42,7 @@
 > OpenStack is a cloud operating system that controls large pools of compute, storage, and networking resources throughout a datacenter, all managed through a dashboard that gives administrators control while empowering their users to provision resources through a web interface.
 ![](https://github.com/Erik-ly/OpenStack-Kilo-Ubuntu14.04/blob/master/lesson-01/images/openstack-software-diagram.png)
 
+
 讲师认为OpenStack的主要目标是管理数据中心的资源以及简化资源的分配。
 
 讲师对OpenStack的认识：
@@ -87,8 +88,24 @@ IaaS到PaaS:OpenStack不满足仅仅把技术支持做到IaaS，而是想扩展�
 
 互联互通：想在未来将世界各地的基于OpenStack搭建的私有云公有云实现互联互通，形成OpenStack云网络。
 
+##OpenStack架构
+###OpenStack架构设计特点
+* 无中心：任何一个点出现故障不会导致整个系统瘫痪。
 
+* 分布式：核心项目可以分布式部署，核心项目与核心项目之间也可以部署在不同的机器上面。
 
+* 异步执行：可以从消息对列中逐条执行，而不需要发送方等接收方做完再告诉发送方，发送方只需将需要做的事情发送到消息队列中即可，这对服务性能有很大的提升。
+
+* 插件化可配置：OpenStack是集成框架，比如虚拟机管理软件可以用KVM也可以用VMware来管理，非常灵活，可扩展。
+
+* Restful API:OpenStack每个项目都会提供api用来与外界服务进行交互，api除方便核心项目之间的交互也方便我们方便通过api的方式去调用或开发。
+
+###OpenStack架构设计优势
+* 部署灵活：耦合度非常低，可以把服务任意部署，也很容易水平扩展。
+* 
+* 易扩展：易扩展与部署灵活都是因为OpenStack是分布式，无中心等特点。
+* 
+* 易集成：OpenStack可以管理基于不同平台搭建的虚拟机，也可以管理物理机甚至容器。
 
 
 
