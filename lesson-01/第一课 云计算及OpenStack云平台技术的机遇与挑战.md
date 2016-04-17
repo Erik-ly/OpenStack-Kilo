@@ -18,7 +18,9 @@
 **根据云计算服务性质的不同，可以将云计算分为私有云、公有云和混合云。**
 
 私有云：放在私有环境中，比如说企业自己在机房中建立的或者是运营商建设好，但是整体只租给某个企业的，企业之外的用户是无法访问或无法使用的。
+
 公有云:与私有云恰好相反，公有云是放在互联网上面，只要是注册的用户、付费的用户都可以使用。
+
 混合云：公有云和私有云的混合。
 
 **选择情境：**
@@ -39,6 +41,43 @@
 **官方定义：**
 > OpenStack is a cloud operating system that controls large pools of compute, storage, and networking resources throughout a datacenter, all managed through a dashboard that gives administrators control while empowering their users to provision resources through a web interface.
 ![](https://github.com/Erik-ly/OpenStack-Kilo-Ubuntu14.04/blob/master/lesson-01/images/openstack-software-diagram.png)
+
+讲师认为OpenStack的主要目标是管理数据中心的资源以及简化资源的分配。
+
+讲师对OpenStack的认识：
+
+1.亚马逊云计算的山寨版；
+
+2.OpenStack是由许多开源的软件组合起来的集合，是一加一大于二的概念，组合起来的功能比单个的功能是大得多的；
+
+3.OpenStack是公有云和私有云的一种具体技术实现，对应着IaaS模式；
+
+4.OpenStack不像是官方定义的是一个云操作系统，而只是一种集成的框架，因为从它对软件项目构成来说，基于OpenStack搭建一套系统以后是肯定不能满足业务的需要，还需要在部署好的基础之上做许多定制性的开发，其次它的很多功能是借助第三方的软件实现（比如计算功能借助KVM或Vwmare搭建计算资源池）。
+
+##2. OpenStack项目介绍
+
+###OpenStack核心项目
+* Identity Service(Keystone):提供了用户信息管理，为其他组件提供认证服务
+
+* Compute Service(Nova):计算资源声明周期管理软件
+
+* Network Service(Neutron):提供云计算环境下的虚拟网络功能
+
+* Block Storage Service(Cinder):管理计算实例所使用的块级存储
+
+* Object Storage Service（Swif）:对象存储，用于永久类型的静态数据的长期存储
+
+* Image Service(Glance):提供虚拟机镜像的发现，注册，获取服务
+
+* Dashhoard(Horizon):用以管理、控制OpenStack服务的Web控制面板
+
+
+
+
+
+
+
+
 
 
 
