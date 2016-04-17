@@ -71,9 +71,10 @@
 
 * Dashhoard(Horizon):用以管理、控制OpenStack服务的Web控制面板
 
+###各组件之间的关系
+![](https://github.com/Erik-ly/OpenStack-Kilo-Ubuntu14.04/blob/master/lesson-01/images/openstack-projects-relationship.png)
 
-
-
+现在以创建一个虚拟机为例阐述这些组件是怎么建立起关系的，首先创建虚拟机时需要通过web界面来创建，而web界面是通过Horizon这个服务提供的，但通过web界面操作肯定是需要认证的，这个认证就是通过Keyston来完成的，通过Keystone完成认证后进入到web界面向Nova发出指令创建虚拟机VMs，此时虚拟机是裸机，需要安装操作系统，通过Glance提供安装操作系统所需的镜像文件，镜像文件存储在Swift中，Glance从Swift上获取到镜像文件，再把这个镜像文件提供给Nova来创建虚拟机。虚拟机创建完成以后肯定需要把这个虚拟机加入到一个已经存在的计算集群里面形成一个新的计算集群，而搭建网络就是由Neutron来完成。当在使用过程中发现给虚拟机分配的存储空间不够时，比如再给虚拟机加一块硬盘，这时就需要Cinder服务来挂载并管理这块硬盘的生命周期。
 
 
 
