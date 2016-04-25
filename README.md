@@ -1,4 +1,4 @@
-# OpenStack-Kilo-Ubuntu14.04
+# OpenStack-Kilo
 #项目说明
 此项目为本人在学习炼数成金网站教学课程《OpenStack从入门到精通》（第三期）时所做学习笔记，根据教学视频所讲内容及自己搜集实践整理而成。
 
