@@ -76,8 +76,71 @@ hypervisor这种计算虚拟化的实现方式可以提供包括操作系统内�
 libvirt是基于驱动程序的架构来实现管理虚拟化软件的，比如它为KVM、LXC等各开发一套驱动程序，通过同样的接口调用不同的驱动程序来驱动KVM这样的管理虚拟化的程序，同时libvirt是作为中间的一个适配层屏蔽了底层的虚拟化管理程序的细节，为上层（比如OpenStack）提供统一的接口，通过libvirt，比如OpenStack就可以管理各种不同的虚拟化管理程序以及运行在这些虚拟化管理程序上的客户操作系统(VM)。
 
 ## 2.网络虚拟化相关技术介绍
+### OSI七层模型
+![](https://github.com/Erik-ly/OpenStack-Kilo/blob/master/lesson-02/imagines/OSI.jpg)
 
+OSI七层模型是一个网络互联的模型，它定义了网络互联的基层框架。
+网络虚拟化主要涉及的就是网络层和链路层。基于网卡和交换机可以将一台台服务器组成一个网，然后通过路由器把不同的子网串成一个更大的网，防火墙可以为这个网络提供安全保障。网络虚拟化也就是虚拟网卡、交换机、路由器、防火墙等。L2、L3分别代表链路层和网络层。
 
+### 软件定义网路（SDN）
+* SDN定义
+  - 将网络的控制平面与数据转发平面进行分离，从而通过集中的控制器中的软件平台去实现可编程化控制底层硬件，实现对网络资源灵活的按需调配。
+
+* SDN架构
+  - 应用层：包括各种不同的业务和应用；
+  - 控制层：主要负责处理数据平面资源的编排，维护网络拓扑、状态信息等；
+  - 基础设施层：负责基于流表的数据处理、转发和状态收集。
+
+SDN架构中最核心的是控制层，除了要提供API给上层的应用层，间接的控制底层硬件外，还负责基础设施层硬件的网络拓扑状态以及相关的数据编排等。
+
+软件定义网络（SDN）与传统网络不同之处：
+
+优势：
+
+1.	硬件设备价格低廉，因为基础设施层的硬件设备功能单一(只负责数据转发)。
+2.	整个网络的特性是由控制层的软件实现的，对网络的控制和运行都由控制层操作，升级更新比传统硬件容易。
+3.	最核心特性就是对业务响应更快。因为所有的网络的控制都是通过控制层的软件来时时定义，但传统网络的业务发生变动之后就要把所有网络设备进行更改，比如路由器，交换机，防火墙等。
+
+劣势：
+
+1.	SDN技术还不成熟，稳定性较差。
+
+2.	安全性比传统网络差，因为SDN的整个网络是通过控制层的软件控制的，如果黑客控制了网络层的软件，就会控制整个网络。
+
+### Open vSwitch
+* Open vSwitch 简称OVS。常用在虚拟化平台，为虚拟机提供二层交换功能。支持Xen/XenServer，KVM，VirtualBox多种虚拟化技术。
+* Open vSwitch支持openflow协议。可以使用任何支持OpenFlow协议的控制器对OVS进行远程管理控制。
+
+### Open vSwitch相关概念
+* Bridge：Brigde代表一个以太网交换机（Switch），一个主机中可以创建一个或者多个Bridge设备。
+* Port：端口与物理交换机的端口概念类似，每个Port都隶属于一个Bridge。
+* Interface：连接到Port的网络接口设备。
+* Controller：OpenFlow控制器。
+* Datapath：负责执行数据交换，也就是把从接收端口收到的数据包在流表中进行匹配，并执行匹配到的动作。
+* Flow table：每个datapath都和一个"flow table"关联，当datapath接收到数据之后，OVS会在flow table中查找可以匹配的flow，执行对应的操作，例如转发数据到另外的端口。
+
+### Open vSwitch架构
+![](https://github.com/Erik-ly/OpenStack-Kilo/blob/master/lesson-02/imagines/Open-vSwitch.jpg)
+
+OVS架构主要分为三部分，第一部分是web控制器，可以用自带或第三方软件实现对OS进行管理控制。第二部分是用户态，用户态主要有两个主要的进程，一个是ovsdb-server，它是OS 的核心的守护进程，它实现了核心的虚拟交换机的功能，OS的配置会存在ovsdb数据库中，并且数据是持久性的。第三部分是内核态，用户态的所有操作最终都会转向内核态，然后再由内核态对数据进行处理。
+
+### Open vSwitch常用组件及操作
+* ovs-dpctl：命令行工具，用来配置交换机内核模块，可以控制转发规则。
+  - ovs-dpctl dump-flows br0 #查看指定bridge上的datapath信息
+* ovs-vsctl:主要是获取或者更改ovs-vswitch的配置信息，此工具操作的时候会更新ovsdb-server中的数据库。
+  - ovs-vsctl add-br br0 #添加网桥
+  - ovs-vsctl list-br #列出说有网桥
+  - ovs-vsctl set-controller ovs-switch tcp:9.181.137.182:6633 #指定controller控制器
+* ovs-ofctl:用来控制OVS作为OpenFlow交换机工作时候的流表内容
+
+### Linux Bridge
+* 桥接
+  - 定义1：是指依据OSI网络模型的链路层的地址，对网络数据包进行转发的过程，工作在OSI的第二层。
+  - 定义2：把一台机器上的若干个网络接口“连接”起来。
+* Linux Bridge
+  - linux上用来做二层协议交换的虚拟设备，与现实世界中的交换机功能相似。这个虚拟设备可以绑定若干个以太网接口设备，从而将它们桥接起来。
+  - 安装：yum install bridge-utils -y
+  - Linux Bridge配置命令：brctl（可以通过执行brctl help查看命令帮助）
 
 ## 3.OpenStack通用组件介绍
 
