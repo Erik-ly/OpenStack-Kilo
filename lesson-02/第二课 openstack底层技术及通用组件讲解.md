@@ -70,6 +70,7 @@ hypervisor这种计算虚拟化的实现方式可以提供包括操作系统内�
 * libvirt关键名词解释：
   - 节点（Node）：一个物理机器，上面可能运行着多个虚拟客户机。Hypervisor和Domain都运行在Node之上。
   - 域（Domain）：是在Hypervisor上运行的一个客户机操作系统实例。域也被称为实例（instance，如亚马逊的AWS云计算服务中客户机就被成为实例）、客户机操作系统（guest OS）、虚拟机（virtual machine），它们都是指同一个概念。
+
 ![](https://github.com/Erik-ly/OpenStack-Kilo/blob/master/lesson-02/imagines/libvirt.jpg)
 
 libvirt是基于驱动程序的架构来实现管理虚拟化软件的，比如它为KVM、LXC等各开发一套驱动程序，通过同样的接口调用不同的驱动程序来驱动KVM这样的管理虚拟化的程序，同时libvirt是作为中间的一个适配层屏蔽了底层的虚拟化管理程序的细节，为上层（比如OpenStack）提供统一的接口，通过libvirt，比如OpenStack就可以管理各种不同的虚拟化管理程序以及运行在这些虚拟化管理程序上的客户操作系统(VM)。
