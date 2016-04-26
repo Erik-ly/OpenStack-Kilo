@@ -27,7 +27,9 @@ CPU指中央处理器，是一台电脑上最核心的组件，它的功能主�
 * 硬件复制全虚拟化
   - Intel VT和AMD-V技术
   - 客户操作系统可以直接使用Ring 0 而无需修改
-  - 查看CPU是否支持
+  - 查看CPU是否支持：
+    + grep "vmx" /proc/cpuinfo
+    + grep "svm" /proc/cpuinfo
   
 ## 2.网络虚拟化相关技术介绍
 
