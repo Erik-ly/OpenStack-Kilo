@@ -163,14 +163,22 @@ OVS架构主要分为三部分，第一部分是web控制器，可以用自带�
 在OpenStack里，除了管理界面是基于apache来提供web服务的，其它的api都不是通过apache提供服务的。在之后的排查错误的时候，如果api不能启动，首先要查WSGI服务是否是起动的。
 
 ### Paste Deployment
-* 
+* Paste Deployment（简称PD）是一个WSGI工具包
+* 基于PD的应用配置文件，内容被分为很多段（section），PD只关心带有前缀的段，比如[app:main]或者[filter:errors]
+* 一个section的内容是以键=值来标示的。#是一个注释。
 
+### MariaDB
+* MariaDB是一个采用Maria存储引擎的MySQL分支版本
+* MariaDB完全兼容MySQL，包括API和客户端协议
+* OpenStack的核心项目Keyston，Cinder，Glance，Neutron，Nova等均使用到它来存放相关持久数据
 
-
-
-
-
-
-
-
+### RabbitMQ
+* Message Queue（MQ）定义
+  - MQ是消费-生产者模型的一个典型的代表，一端往消息队列中不断写入消息，而另一端则可以读取或者订阅队列中的消息
+* MabbitMQ（官方地址：http://www.rabbitmq.com）是一个有erlang开发的基于AMQP协议（Advanced Message Queue Protocol）的开源实现。通常用于应用程序之间或者程序的不同组件之间通过消息来进行集成。
+* 主要名词解释
+  - 交换器（Exchange），它是发送消息的实体
+  - 队列（Queue），这是接收消息的实体。
+  - 绑定器（Bind），将交换器和队列连接起来，并且封装消息的路由信息。
+* OpenStack中模块Cinder、Neutron、Nova等项目的内部组件之间的通信都是通过AMQP协议实现，消息由RabbitMQ作为中间件转发
 
