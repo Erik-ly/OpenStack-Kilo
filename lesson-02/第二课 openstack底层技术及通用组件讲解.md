@@ -143,5 +143,34 @@ OVS架构主要分为三部分，第一部分是web控制器，可以用自带�
   - Linux Bridge配置命令：brctl（可以通过执行brctl help查看命令帮助）
 
 ## 3.OpenStack通用组件介绍
+### Python相关说明
+* OpenStack基于Python 2.7 版本开发。
+* OpenStack Liberty版本才支持Python 3.
+* 检查操作系统默认Python版本命令：python -v
+* pip是一个安装和管理Python包的工具
+
+### REST
+* REST 是一中架构风格，其核心是面向资源
+* 基于HTTP协议
+* HTTP协议里面，四个表示操作方式的动词：GET、POST、PUT、DELETE
+* GET用来获取资源，POST用来新建资源，PUT用来更新或新建资源,DELETE用来删除资源
+
+### WSGI
+* WSGI定义
+  - WSGI的全称是Web Gateway Interface，这是一个规范，描述了web server如何与web application交互、web application如何处理请求
+  - WSGI包含Server，Middleware，Application。WSGI server接收客户请求，传递给Middleware，Middleware根据相关配置路由给WSGI application处理
+
+在OpenStack里，除了管理界面是基于apache来提供web服务的，其它的api都不是通过apache提供服务的。在之后的排查错误的时候，如果api不能启动，首先要查WSGI服务是否是起动的。
+
+### Paste Deployment
+* 
+
+
+
+
+
+
+
+
 
 
