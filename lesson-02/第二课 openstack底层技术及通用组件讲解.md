@@ -61,6 +61,9 @@ hypervisor这种计算虚拟化的实现方式可以提供包括操作系统内�
 * KVM能让多个虚拟机使用同一镜像，并未每一个虚拟机配置个性化硬件环境（网卡、磁盘、图形适配器……）。
 * 在主流的linux内核，如2.20以上的内核均已包含了KVM。
 
+### hypervisor软件比较
+![](https://github.com/Erik-ly/OpenStack-Kilo/blob/master/lesson-02/imagines/hypervisor-software.jpg)
+
 ## 2.网络虚拟化相关技术介绍
 
 
