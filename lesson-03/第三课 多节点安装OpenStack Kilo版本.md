@@ -1,5 +1,5 @@
 # 第三课 多节点安装OpenStack Kilo版本
-## 环境说明
+## 准备工作
 ### 实验环境
 * 实验系统：Windows 10
 * 虚拟环境：VirtualBox 5.0
@@ -73,10 +73,33 @@
  * object
  * container
 
+### 配置主机名
+vi /etc/hosts
+
+192.168.1.30 controller
+
+192.168.1.31 compute-node-01
+
+192.168.1.32 network-node-01
+
+192.168.1.33 block-node-01
+
+192.168.1.34 object-node-01
+
+192.168.1.35 object-node-02
+
+*也可以在安装时打开网络，默认dhcp获取的ip也是可以的，只要在同一个网段即可，主机名也可以在此时设置，安装好后添加到/etc/hosts 文件里即可。
 
 
-
-
+## 安装
+### 配置基础组件（在所有节点都要执行）
+1.安装基础组件及源
+    yum install ntp -y
+    yum install yum-plugin-priorities -y
+    yum install http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-6.noarch.rpm -y
+    yum install http://rdo.fedorapeople.org/openstack-kilo/rdo-release-kilo.rpm -y
+    yum upgrade
+    yum install openstack-selinux -y
 
 
 
