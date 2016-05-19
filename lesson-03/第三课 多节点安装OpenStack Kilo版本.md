@@ -16,30 +16,30 @@
 
 ### 组件部署
 **controller 节点**
-* keystone
-* glance
-* horizon
-* neutron
- * server
- * ml2
- * clientwhich
-* nova
- * api
- * cnductor
- * console
- * novaporxy
- * ccert
-* cinder
- * api
- * schedule
-* swift
- * proxy
- * client
-* mariadb
-* rabbitMQ
-* httpServer
-* memcached
-* ntpd
+ * keystone   
+ * glance   
+ * horizon  
+ * neutron  
+  * server 
+  * ml2   
+  * clientwhich 
+ * nova         
+  * api        
+  * cnductor  
+  * console    
+  * novaporxy   
+  * ccert     
+ * cinder      
+  * api       
+  * schedule    
+ * swift      
+  * proxy    
+  * client     
+ * mariadb      
+ * rabbitMQ    
+ * httpServer  
+ * memcached     
+ * ntpd          
 
 **compute-node-01 节点**
 * nova
