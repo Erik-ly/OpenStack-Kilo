@@ -105,7 +105,7 @@ vi /etc/hosts
 
       yum upgrade
 
-      yum install openstack-selinux -y`
+      yum install openstack-selinux -y
 
 2.停止防火墙服务
 
