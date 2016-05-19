@@ -106,6 +106,7 @@ vi /etc/hosts
       yum upgrade
 
       yum install openstack-selinux -y
+*`yum install http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-6.noarch.rpm -y`这个命令中的链接如果失效，可以寻找x86_64/e/下的epel-release-7-*.noarch.rpm文件进行替换
 
 2.停止防火墙服务
 
