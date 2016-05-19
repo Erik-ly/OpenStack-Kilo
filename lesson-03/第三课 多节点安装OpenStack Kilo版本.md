@@ -88,7 +88,7 @@ vi /etc/hosts
 
 192.168.1.35 object-node-02
 
-*也可以在安装时打开网络，默认dhcp获取的ip也是可以的，只要在同一个网段即可，主机名也可以在此时设置，安装好后添加到/etc/hosts 文件里即可。
+注：也可以在安装时打开网络，默认dhcp获取的ip也是可以的，只要在同一个网段即可，主机名也可以在此时设置，安装好后添加到/etc/hosts 文件里即可。
 
 
 ## 安装
@@ -106,7 +106,8 @@ vi /etc/hosts
       yum upgrade
 
       yum install openstack-selinux -y
-*`yum install http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-6.noarch.rpm -y`这个命令中的链接如果失效，可以寻找x86_64/e/下的epel-release-7-*.noarch.rpm文件进行替换
+
+注:`yum install http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-6.noarch.rpm -y`这个命令中的链接如果失效，可以寻找x86_64/e/下的epel-release-7-*.noarch.rpm文件进行替换
 
 2.停止防火墙服务
 
