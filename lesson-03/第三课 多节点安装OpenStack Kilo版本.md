@@ -94,25 +94,25 @@ vi /etc/hosts
 ## 安装
 ### 配置基础组件（在所有节点都要执行）
 1.安装基础组件及源
-`yum install ntp -y
 
-yum install yum-plugin-priorities -y
+      yum install ntp -y
 
-yum install http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-6.noarch.rpm -y
+      yum install yum-plugin-priorities -y
 
-yum install http://rdo.fedorapeople.org/openstack-kilo/rdo-release-kilo.rpm -y
+      yum install http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-6.noarch.rpm -y
 
-yum upgrade
+      yum install http://rdo.fedorapeople.org/openstack-kilo/rdo-release-kilo.rpm -y
 
-yum install openstack-selinux -y`
+      yum upgrade
+
+      yum install openstack-selinux -y`
 
 2.停止防火墙服务
 
-`systemctl stop firewalld.service
+      systemctl stop firewalld.service
 
-systemctl disable firewalld.service`
+      systemctl disable firewalld.service
 
-
-
+    
 
 
