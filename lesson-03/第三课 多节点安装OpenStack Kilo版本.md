@@ -15,7 +15,7 @@
 * object-node-02 ：一块桥接网卡，1G内存，50G存储（动态分配）
 
 ### 组件部署
-+ controller 节点
+**controller 节点**
 * keystone
 * glance
 * horizon
@@ -41,7 +41,7 @@
 * memcached
 * ntpd
 
-+ compute-node-01 节点
+**compute-node-01 节点**
 * nova
  * compute
  * qumu
@@ -49,24 +49,24 @@
  * openvswitch
  * ml2
 
-+ network-node-01 节点
+**network-node-01 节点**
 * neutron
  * openvswitch
  * ml2
 
-+ block-node-01 节点
+**block-node-01 节点**
 * cinfer
  * lvm2
  * volume
 
-+ object-node-01  节点
+**object-node-01  节点**
 *  rsync
 *  swift
  * accout
  * object
  * container
 
-+ object-node-02  节点
+**object-node-02  节点**
 * rsync
 * swift
  * account
