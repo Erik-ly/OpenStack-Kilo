@@ -115,6 +115,19 @@ vi /etc/hosts
 
       systemctl disable firewalld.service
 
-    
+ 
+### 在controller 节点安装
+配置时钟同步
+1.备份配置文件
+```
+cp /etc/ntp.conf /etc/ntp.conf.bak
+```
 
+2.添加参数
+```
+vim /etc/ntp.conf
+server controller iburst
+restrict -4 default kod notrap nomodify
+restrict -6 default kod notrap nomodify
+```
 
