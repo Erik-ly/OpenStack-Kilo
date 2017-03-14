@@ -131,3 +131,62 @@ restrict -4 default kod notrap nomodify
 restrict -6 default kod notrap nomodify
 ```
 
+3.注释以下参数
+`#restrict default nomodify notrap nopeer noquery
+#restrict 127.0.0.1 
+#restrict ::1`
+
+4.启动时钟同步服务
+```
+systemctl enable ntpd.service
+systemctl start ntpd.service
+```
+
+安装数据库
+1.安装mariadb
+```
+yum install mariadb mariadb-server MySQL-python -y
+```
+
+全部主机名
+在`/etc/hosts`中添加各个主机ip地址及主机名
+```
+192.168.1.30 controller
+192.168.1.31 compute-node-01
+192.168.1.32 compute-node-01
+192.168.1.33 block-node-01
+192.168.1.34 object-node-01
+192.168.1.35 object-node-02
+```
+
+2.备份配置文件
+cp /etc/my.cnf /etc/my.cnf.bak
+
+3.修改配置文件
+```
+vim /etc/my.cnf
+```
+`
+[mysqld]
+bind-address = controller
+default-storage-engine = innodb
+innodb_file_per_table
+collation-server = utf8_general_ci
+init-connect = 'SET NAMES utf8'
+character-set-server = utf8
+`
+
+4.启动数据库服务
+```
+systemctl enable mariadb.service
+systemctl start mariadb.service
+```
+
+5.配置数据库服务安全参数,设置root密码（六个w：wwwwww）
+```
+mysql_secure_installation
+```
+
+
+
+
